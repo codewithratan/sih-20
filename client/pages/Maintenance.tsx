@@ -106,7 +106,7 @@ export default function Maintenance() {
               <div className="flex items-center gap-2 font-medium">
                 <Bell className="h-4 w-4 text-amber-600" /> Status: {status}
               </div>
-              <div className="mt-1 text-xs text-muted-foreground">Thresholds: efficiency < 70% or voltage < 11.5V trigger alerts.</div>
+              <div className="mt-1 text-xs text-muted-foreground">Thresholds: efficiency {"<"} 70% or voltage {"<"} 11.5V trigger alerts.</div>
             </div>
             <Button onClick={sendSms}>
               Send SMS Alert
