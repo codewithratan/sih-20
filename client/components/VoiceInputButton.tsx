@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function VoiceInputButton({ onResult, lang = "en-IN", className }: Props) {
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any | null>(null);
   const [active, setActive] = useState(false);
   const [supported, setSupported] = useState(true);
 
