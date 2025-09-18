@@ -23,8 +23,8 @@ export default function VoiceInputButton({ onResult, lang = "en-IN", className }
     rec.lang = lang;
     rec.continuous = false;
     rec.interimResults = false;
-    rec.onresult = (e: SpeechRecognitionEvent) => {
-      const transcript = Array.from(e.results).map(r => r[0].transcript).join(" ").trim();
+    rec.onresult = (e: any) => {
+      const transcript = Array.from(e.results).map((r: any) => r[0].transcript).join(" ").trim();
       if (transcript) onResult(transcript);
     };
     rec.onend = () => setActive(false);
