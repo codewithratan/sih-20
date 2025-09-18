@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import EnergyTrade from "./pages/EnergyTrade";
 import Maintenance from "./pages/Maintenance";
+import Home from "./pages/Home";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const Header = () => (
         <span>Solar Saarthi</span>
       </Link>
       <nav className="flex items-center gap-4 text-sm font-medium">
+        <Link to="/home" className="hover:underline">Home</Link>
         <Link to="/" className="hover:underline">
           Eligibility & Subsidy Estimate
         </Link>
@@ -58,6 +60,7 @@ const App = () => (
         <main className="min-h-[calc(100dvh-8rem)] bg-gradient-to-b from-amber-50 to-transparent">
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/energy-trade" element={<EnergyTrade />} />
             <Route path="/maintenance" element={<Maintenance />} />
