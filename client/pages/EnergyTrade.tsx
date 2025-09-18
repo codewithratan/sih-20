@@ -1,5 +1,11 @@
 import { useMemo, useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -56,7 +62,12 @@ export default function EnergyTrade() {
 
   const register = () => {
     if (name.trim().length < 2 || !/^\d{10}$/.test(phone)) return;
-    const u: User = { role, name, phone, demandKWh: role === "buyer" ? Number(demand) || 50 : undefined };
+    const u: User = {
+      role,
+      name,
+      phone,
+      demandKWh: role === "buyer" ? Number(demand) || 50 : undefined,
+    };
     setRegistered(u);
   };
 
@@ -93,7 +104,10 @@ export default function EnergyTrade() {
     ]);
   };
 
-  const discomTotal = useMemo(() => trades.reduce((s, t) => s + t.totalINR, 0), [trades]);
+  const discomTotal = useMemo(
+    () => trades.reduce((s, t) => s + t.totalINR, 0),
+    [trades],
+  );
 
   return (
     <div className="container py-8 space-y-6">
@@ -103,8 +117,13 @@ export default function EnergyTrade() {
             <Zap className="h-5 w-5 text-primary" />
           </span>
           <div>
-            <h1 className="text-xl sm:text-2xl font-extrabold leading-tight">Blockchain Energy Trade (MVP)</h1>
-            <p className="text-sm text-muted-foreground">List surplus solar energy and let buyers purchase transparently. Mumbai testnet-ready (simulated here).</p>
+            <h1 className="text-xl sm:text-2xl font-extrabold leading-tight">
+              Blockchain Energy Trade (MVP)
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              List surplus solar energy and let buyers purchase transparently.
+              Mumbai testnet-ready (simulated here).
+            </p>
           </div>
         </div>
       </div>
@@ -113,36 +132,76 @@ export default function EnergyTrade() {
         <Card>
           <CardHeader>
             <CardTitle>Register</CardTitle>
-            <CardDescription>Farmer QR is simulated. Enter details to continue.</CardDescription>
+            <CardDescription>
+              Farmer QR is simulated. Enter details to continue.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex gap-2 text-sm">
-              <Button variant={role === "farmer" ? "default" : "outline"} size="sm" onClick={() => setRole("farmer")}>Farmer</Button>
-              <Button variant={role === "buyer" ? "default" : "outline"} size="sm" onClick={() => setRole("buyer")}>Buyer</Button>
+              <Button
+                variant={role === "farmer" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setRole("farmer")}
+              >
+                Farmer
+              </Button>
+              <Button
+                variant={role === "buyer" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setRole("buyer")}
+              >
+                Buyer
+              </Button>
             </div>
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder={role === "farmer" ? "e.g., Sita Devi" : "e.g., Village Buyer"} />
+              <Input
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={
+                  role === "farmer" ? "e.g., Sita Devi" : "e.g., Village Buyer"
+                }
+              />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="phone">Phone (10 digits)</Label>
-              <Input id="phone" value={phone} onChange={(e) => setPhone(e.target.value.replace(/[^\d]/g, "").slice(0, 10))} placeholder="9xxxxxxxxx" inputMode="numeric" />
+              <Input
+                id="phone"
+                value={phone}
+                onChange={(e) =>
+                  setPhone(e.target.value.replace(/[^\d]/g, "").slice(0, 10))
+                }
+                placeholder="9xxxxxxxxx"
+                inputMode="numeric"
+              />
             </div>
             {role === "buyer" && (
               <div className="grid gap-2">
                 <Label>Demand (kWh/day)</Label>
-                <Input value={demand} onChange={(e) => setDemand(e.target.value.replace(/[^\d.]/g, ""))} placeholder="50" inputMode="decimal" />
+                <Input
+                  value={demand}
+                  onChange={(e) =>
+                    setDemand(e.target.value.replace(/[^\d.]/g, ""))
+                  }
+                  placeholder="50"
+                  inputMode="decimal"
+                />
               </div>
             )}
             <div className="flex items-center gap-3">
               <Button onClick={register}>
-                <CheckCircle2 className="mr-2 h-4 w-4" /> {registered ? "Update" : "Register"}
+                <CheckCircle2 className="mr-2 h-4 w-4" />{" "}
+                {registered ? "Update" : "Register"}
               </Button>
-              <span className="text-xs text-muted-foreground">QR scan simulated <QrCode className="inline h-4 w-4" /></span>
+              <span className="text-xs text-muted-foreground">
+                QR scan simulated <QrCode className="inline h-4 w-4" />
+              </span>
             </div>
             {registered && (
               <div className="rounded-md border p-3 text-xs">
-                Registered as <b>{registered.role}</b>: {registered.name} ({registered.phone})
+                Registered as <b>{registered.role}</b>: {registered.name} (
+                {registered.phone})
               </div>
             )}
           </CardContent>
@@ -151,21 +210,41 @@ export default function EnergyTrade() {
         <Card>
           <CardHeader>
             <CardTitle>Energy Listing</CardTitle>
-            <CardDescription>Farmers can list surplus energy and get AI-suggested price.</CardDescription>
+            <CardDescription>
+              Farmers can list surplus energy and get AI-suggested price.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-2">
               <Label>Mock Solar Output (kWh/day)</Label>
-              <Input value={solarOutput} onChange={(e) => setSolarOutput(e.target.value.replace(/[^\d.]/g, ""))} inputMode="decimal" />
+              <Input
+                value={solarOutput}
+                onChange={(e) =>
+                  setSolarOutput(e.target.value.replace(/[^\d.]/g, ""))
+                }
+                inputMode="decimal"
+              />
             </div>
             <div className="grid gap-2">
               <Label>List kWh</Label>
-              <Input value={listKWh} onChange={(e) => setListKWh(e.target.value.replace(/[^\d.]/g, ""))} inputMode="decimal" />
+              <Input
+                value={listKWh}
+                onChange={(e) =>
+                  setListKWh(e.target.value.replace(/[^\d.]/g, ""))
+                }
+                inputMode="decimal"
+              />
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label>Base Price (₹/kWh)</Label>
-                <Input value={basePrice} onChange={(e) => setBasePrice(e.target.value.replace(/[^\d.]/g, ""))} inputMode="decimal" />
+                <Input
+                  value={basePrice}
+                  onChange={(e) =>
+                    setBasePrice(e.target.value.replace(/[^\d.]/g, ""))
+                  }
+                  inputMode="decimal"
+                />
               </div>
               <div className="grid gap-2">
                 <Label>AI Suggested (₹/kWh)</Label>
@@ -173,10 +252,15 @@ export default function EnergyTrade() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Button onClick={createListing} disabled={!registered || registered.role !== "farmer"}>
+              <Button
+                onClick={createListing}
+                disabled={!registered || registered.role !== "farmer"}
+              >
                 Create Listing
               </Button>
-              <span className="text-xs text-muted-foreground">AI uses simple supply/demand heuristic for MVP.</span>
+              <span className="text-xs text-muted-foreground">
+                AI uses simple supply/demand heuristic for MVP.
+              </span>
             </div>
           </CardContent>
         </Card>
@@ -186,21 +270,36 @@ export default function EnergyTrade() {
         <Card>
           <CardHeader>
             <CardTitle>Marketplace</CardTitle>
-            <CardDescription>Buyers can purchase listed energy via mock UPI payment.</CardDescription>
+            <CardDescription>
+              Buyers can purchase listed energy via mock UPI payment.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {listings.length === 0 ? (
-              <div className="text-sm text-muted-foreground">No listings yet.</div>
+              <div className="text-sm text-muted-foreground">
+                No listings yet.
+              </div>
             ) : (
               <div className="space-y-2">
                 {listings.map((l) => (
-                  <div key={l.id} className="flex flex-wrap items-center justify-between gap-3 rounded-md border p-3">
+                  <div
+                    key={l.id}
+                    className="flex flex-wrap items-center justify-between gap-3 rounded-md border p-3"
+                  >
                     <div className="text-sm">
-                      <div className="font-medium">{l.kWh} kWh from {l.farmer}</div>
-                      <div className="text-muted-foreground">Base ₹{l.basePrice}/kWh • AI ₹{l.aiPrice}/kWh</div>
+                      <div className="font-medium">
+                        {l.kWh} kWh from {l.farmer}
+                      </div>
+                      <div className="text-muted-foreground">
+                        Base ₹{l.basePrice}/kWh • AI ₹{l.aiPrice}/kWh
+                      </div>
                     </div>
-                    <Button onClick={() => buyListing(l)} disabled={!registered || registered.role !== "buyer"}>
-                      <Wallet className="mr-2 h-4 w-4" /> UPI Pay ₹{Math.round(l.kWh * l.aiPrice)}
+                    <Button
+                      onClick={() => buyListing(l)}
+                      disabled={!registered || registered.role !== "buyer"}
+                    >
+                      <Wallet className="mr-2 h-4 w-4" /> UPI Pay ₹
+                      {Math.round(l.kWh * l.aiPrice)}
                     </Button>
                   </div>
                 ))}
@@ -209,7 +308,10 @@ export default function EnergyTrade() {
           </CardContent>
         </Card>
 
-        <ResultsCard title="DISCOM Compliance Report" description="Simulated trade data for audit. Download as PDF for demo.">
+        <ResultsCard
+          title="DISCOM Compliance Report"
+          description="Simulated trade data for audit. Download as PDF for demo."
+        >
           {trades.length === 0 ? (
             <div className="text-sm text-muted-foreground">No trades yet.</div>
           ) : (
@@ -219,15 +321,23 @@ export default function EnergyTrade() {
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
                       <div className="font-medium">Trade #{t.id}</div>
-                      <div className="text-muted-foreground">Listing {t.listingId} • {t.kWh} kWh • ₹{t.totalINR}</div>
+                      <div className="text-muted-foreground">
+                        Listing {t.listingId} • {t.kWh} kWh • ₹{t.totalINR}
+                      </div>
                     </div>
-                    <div className="text-xs font-medium">{new Date(t.timestamp).toLocaleString()}</div>
+                    <div className="text-xs font-medium">
+                      {new Date(t.timestamp).toLocaleString()}
+                    </div>
                   </div>
                   <div className="mt-1 text-xs">Buyer: {t.buyer}</div>
-                  <div className="text-xs">Status: {t.paid ? "Paid" : "Unpaid"}</div>
+                  <div className="text-xs">
+                    Status: {t.paid ? "Paid" : "Unpaid"}
+                  </div>
                 </div>
               ))}
-              <div className="rounded-md bg-accent p-3 text-xs text-muted-foreground">Total amount: ₹{discomTotal.toLocaleString("en-IN")}</div>
+              <div className="rounded-md bg-accent p-3 text-xs text-muted-foreground">
+                Total amount: ₹{discomTotal.toLocaleString("en-IN")}
+              </div>
             </div>
           )}
         </ResultsCard>
