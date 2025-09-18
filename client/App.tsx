@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
+import EnergyTrade from "./pages/EnergyTrade";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,9 @@ const Header = () => (
       <nav className="flex items-center gap-4 text-sm font-medium">
         <Link to="/" className="hover:underline">
           Home
+        </Link>
+        <Link to="/energy-trade" className="hover:underline">
+          Energy Trade
         </Link>
         <Link to="/dashboard" className="hover:underline">
           Dashboard
@@ -51,6 +55,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/energy-trade" element={<EnergyTrade />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
