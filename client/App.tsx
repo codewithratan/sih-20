@@ -19,7 +19,7 @@ const Header = () => (
     <div className="container flex h-16 items-center justify-between">
       <Link to="/" className="flex items-center gap-2 font-extrabold text-lg">
         <span className="inline-block h-7 w-7 rounded-md bg-primary" />
-        <span>SuryaSahyog</span>
+        <span>Solar Saarthi</span>
       </Link>
       <nav className="flex items-center gap-4 text-sm font-medium">
         <Link to="/" className="hover:underline">
