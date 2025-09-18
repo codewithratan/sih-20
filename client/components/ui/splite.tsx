@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy } from "react";
 
-const Spline = lazy(() => import('@splinetool/react-spline'))
+const Spline = lazy(() => import("@splinetool/react-spline"));
 
 export interface SplineSceneProps {
-  scene: string
-  className?: string
+  scene: string;
+  className?: string;
 }
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
@@ -21,5 +21,5 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
       {/* @ts-ignore - library provides default export component */}
       <Spline scene={scene} className={className} />
     </Suspense>
-  )
+  );
 }
