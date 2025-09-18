@@ -23,7 +23,7 @@ const Header = () => (
       </Link>
       <nav className="flex items-center gap-4 text-sm font-medium">
         <Link to="/" className="hover:underline">
-          Home
+          Eligibility & Subsidy Estimate
         </Link>
         <Link to="/energy-trade" className="hover:underline">
           Energy Trade
