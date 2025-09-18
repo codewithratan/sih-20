@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import EnergyTrade from "./pages/EnergyTrade";
+import Maintenance from "./pages/Maintenance";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,9 @@ const Header = () => (
         </Link>
         <Link to="/energy-trade" className="hover:underline">
           Energy Trade
+        </Link>
+        <Link to="/maintenance" className="hover:underline">
+          Maintenance
         </Link>
         <Link to="/dashboard" className="hover:underline">
           Dashboard
@@ -56,6 +60,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/energy-trade" element={<EnergyTrade />} />
+            <Route path="/maintenance" element={<Maintenance />} />
+            <Route path="/maintaince" element={<Maintenance />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
