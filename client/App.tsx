@@ -20,8 +20,12 @@ const Header = () => (
         <span>SuryaSahyog</span>
       </Link>
       <nav className="flex items-center gap-4 text-sm font-medium">
-        <Link to="/" className="hover:underline">Home</Link>
-        <Link to="/dashboard" className="hover:underline">Dashboard</Link>
+        <Link to="/" className="hover:underline">
+          Home
+        </Link>
+        <Link to="/dashboard" className="hover:underline">
+          Dashboard
+        </Link>
       </nav>
     </div>
   </header>

@@ -40,7 +40,9 @@ export const APPROVED_STATES_WITH_MATCHING = new Set([
 
 export function estimateCost(pumpHP: number): number {
   // Fallback linear estimate if exact HP not in table
-  const known = Object.keys(COST_PER_HP).map(Number).sort((a, b) => a - b);
+  const known = Object.keys(COST_PER_HP)
+    .map(Number)
+    .sort((a, b) => a - b);
   if (COST_PER_HP[pumpHP]) return COST_PER_HP[pumpHP];
   const min = known[0];
   const max = known[known.length - 1];
@@ -73,14 +75,16 @@ export function predictEligibility(input: EligibilityInput): EligibilityResult {
   if (hasMatching) score += 0.15;
 
   // Pump type - standalone often simpler for off-grid areas
-  if (pumpType === "standalone") score += 0.1; else score += 0.05;
+  if (pumpType === "standalone") score += 0.1;
+  else score += 0.05;
 
   // Irrigation replacement - moving from diesel is prioritized
   if (irrigation === "diesel") score += 0.15;
   if (irrigation === "electric") score += 0.05;
 
   // Pump size realistic range
-  if (pumpHP >= 2 && pumpHP <= 10) score += 0.1; else score -= 0.1;
+  if (pumpHP >= 2 && pumpHP <= 10) score += 0.1;
+  else score -= 0.1;
 
   // Clamp to [0, 1]
   const probability = Math.max(0, Math.min(1, score));
@@ -110,12 +114,18 @@ export function predictEligibility(input: EligibilityInput): EligibilityResult {
 
   const suggestions: string[] = [];
   if (!hasMatching) {
-    suggestions.push("Check if your state offers matching support to increase subsidy up to 90%.");
+    suggestions.push(
+      "Check if your state offers matching support to increase subsidy up to 90%.",
+    );
   }
   if (irrigation === "electric") {
-    suggestions.push("Consider Component C (grid-connected) for potential feed-in benefits if available.");
+    suggestions.push(
+      "Consider Component C (grid-connected) for potential feed-in benefits if available.",
+    );
   } else if (irrigation === "diesel") {
-    suggestions.push("High savings by replacing diesel with solar; prioritize Component B (standalone).");
+    suggestions.push(
+      "High savings by replacing diesel with solar; prioritize Component B (standalone).",
+    );
   }
 
   return {
@@ -132,7 +142,9 @@ export function solarPotentialLabel(ghiKWhPerM2PerDay: number): {
   label: "Low" | "Moderate" | "High";
   color: string;
 } {
-  if (ghiKWhPerM2PerDay >= 5.5) return { label: "High", color: "text-green-600" };
-  if (ghiKWhPerM2PerDay >= 4.5) return { label: "Moderate", color: "text-amber-600" };
+  if (ghiKWhPerM2PerDay >= 5.5)
+    return { label: "High", color: "text-green-600" };
+  if (ghiKWhPerM2PerDay >= 4.5)
+    return { label: "Moderate", color: "text-amber-600" };
   return { label: "Low", color: "text-red-600" };
 }
