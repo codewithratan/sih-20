@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="container py-8 space-y-8">
+    <div className="w-full bg-black text-white min-h-[calc(100dvh-8rem)]">
+      <div className="container py-8 space-y-8">
       <div className="space-y-3">
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
           Welcome to Solar Saarthi
         </h1>
-        <p className="text-muted-foreground max-w-2xl">
+        <p className="text-neutral-300 max-w-2xl">
           Explore our suite: Eligibility checker, Energy Trade, and Maintenance
           Dashboard.
         </p>
@@ -25,6 +26,7 @@ export default function Home() {
         <Link to="/maintenance">
           <Button variant="secondary">Maintenance</Button>
         </Link>
+      </div>
       </div>
     </div>
   );
