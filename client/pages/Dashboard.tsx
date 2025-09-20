@@ -178,10 +178,12 @@ export default function Dashboard() {
         <div className="relative grid md:grid-cols-2">
           <div className="p-8 md:p-12 space-y-3">
             <h1 className="text-2xl md:text-3xl font-extrabold">
-              Top 10 Indian Solar Panel Manufacturers 2025: Price Comparison, Models, and Official Links
+              Top 10 Indian Solar Panel Manufacturers 2025: Price Comparison,
+              Models, and Official Links
             </h1>
             <p className="text-sm text-muted-foreground">
-              Compare High-Efficiency Solar Panels for Your Home or Business – Updated September 2025
+              Compare High-Efficiency Solar Panels for Your Home or Business –
+              Updated September 2025
             </p>
             <div className="h-1 w-24 bg-[#4CAF50] rounded" />
           </div>
@@ -199,13 +201,16 @@ export default function Dashboard() {
       {/* Intro */}
       <section className="mt-8 prose prose-zinc dark:prose-invert max-w-none">
         <p>
-          India’s solar market continues to surge in 2025, crossing 74 GW of installed capacity with strong
-          momentum from domestic manufacturing and the Production Linked Incentive (PLI) scheme. Comparing
-          Tier-1 manufacturers helps buyers balance efficiency, warranty, and total system cost. The prices
-          below reflect typical market averages for 500–600 W mono PERC/TOPCon modules and include 12% GST;
-          actual quotes vary by city, logistics, and dealer margins. Rooftop households can additionally benefit
-          from central/state incentives such as PM Surya Ghar. Use this guide to shortlist reliable brands,
-          check warranties, and pick the best fit for your home or business.
+          India’s solar market continues to surge in 2025, crossing 74 GW of
+          installed capacity with strong momentum from domestic manufacturing
+          and the Production Linked Incentive (PLI) scheme. Comparing Tier-1
+          manufacturers helps buyers balance efficiency, warranty, and total
+          system cost. The prices below reflect typical market averages for
+          500–600 W mono PERC/TOPCon modules and include 12% GST; actual quotes
+          vary by city, logistics, and dealer margins. Rooftop households can
+          additionally benefit from central/state incentives such as PM Surya
+          Ghar. Use this guide to shortlist reliable brands, check warranties,
+          and pick the best fit for your home or business.
         </p>
       </section>
 
@@ -230,26 +235,40 @@ export default function Dashboard() {
                   <td className="p-3 font-medium">{c.company}</td>
                   <td className="p-3">{c.model}</td>
                   <td className="p-3">{c.efficiency}%</td>
-                  <td className="p-3">₹{c.priceWp} / ₹{c.total1kW.toLocaleString("en-IN")}</td>
-                  <td className="p-3">{c.warrantyProduct}/{c.warrantyPerformance} yrs</td>
+                  <td className="p-3">
+                    ₹{c.priceWp} / ₹{c.total1kW.toLocaleString("en-IN")}
+                  </td>
+                  <td className="p-3">
+                    {c.warrantyProduct}/{c.warrantyPerformance} yrs
+                  </td>
                   <td className="p-3">{c.strengths}</td>
-                  <td className="p-3 text-[#4CAF50] underline"><a href={c.website} target="_blank" rel="noreferrer">{c.websiteLabel}</a></td>
+                  <td className="p-3 text-[#4CAF50] underline">
+                    <a href={c.website} target="_blank" rel="noreferrer">
+                      {c.websiteLabel}
+                    </a>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         <p className="mt-2 text-xs text-muted-foreground">
-          Note: Prices are indicative (Sep 2025), exclude installation/BOS. Check official websites and market reports for latest figures.
+          Note: Prices are indicative (Sep 2025), exclude installation/BOS.
+          Check official websites and market reports for latest figures.
         </p>
       </section>
 
       {/* Detailed Cards */}
       <section className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {COMPANIES.map((c) => (
-          <article key={c.company} className="rounded-lg border p-5 bg-white/50 dark:bg-zinc-900/50">
+          <article
+            key={c.company}
+            className="rounded-lg border p-5 bg-white/50 dark:bg-zinc-900/50"
+          >
             <h3 className="text-lg font-semibold">{c.company}</h3>
-            <p className="text-xs text-muted-foreground">Model: {c.model} • {c.efficiency}%</p>
+            <p className="text-xs text-muted-foreground">
+              Model: {c.model} • {c.efficiency}%
+            </p>
             <div className="mt-3">
               <h4 className="text-sm font-medium">Pros</h4>
               <ul className="list-disc pl-5 text-sm">
@@ -266,7 +285,9 @@ export default function Dashboard() {
                 ))}
               </ul>
             </div>
-            <p className="mt-2 text-sm"><span className="font-medium">Best for:</span> {c.useCase}</p>
+            <p className="mt-2 text-sm">
+              <span className="font-medium">Best for:</span> {c.useCase}
+            </p>
             <div className="mt-3 flex items-center gap-3">
               <a
                 href={c.website}
@@ -276,7 +297,12 @@ export default function Dashboard() {
               >
                 Buy Now
               </a>
-              <a href={c.website} target="_blank" rel="noreferrer" className="text-sm text-[#4CAF50] underline">
+              <a
+                href={c.website}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm text-[#4CAF50] underline"
+              >
                 Official Site
               </a>
             </div>
@@ -289,17 +315,28 @@ export default function Dashboard() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <h2 className="text-xl font-semibold">Get a Free Quote</h2>
-            <p className="text-sm text-muted-foreground">Talk to certified installers for exact pricing and subsidy guidance.</p>
+            <p className="text-sm text-muted-foreground">
+              Talk to certified installers for exact pricing and subsidy
+              guidance.
+            </p>
           </div>
           <div className="flex items-center gap-3">
-            <a href="https://pmsuryaghar.gov.in" target="_blank" rel="noreferrer" className="rounded-md bg-[#4CAF50] px-4 py-2 text-white text-sm">
+            <a
+              href="https://pmsuryaghar.gov.in"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-md bg-[#4CAF50] px-4 py-2 text-white text-sm"
+            >
               PM Surya Ghar Subsidy
             </a>
-            <Link to="/" className="rounded-md border px-4 py-2 text-sm">Check Eligibility</Link>
+            <Link to="/" className="rounded-md border px-4 py-2 text-sm">
+              Check Eligibility
+            </Link>
           </div>
         </div>
         <p className="mt-3 text-xs text-muted-foreground">
-          Disclaimer: Prices vary by location, inventory and dealer margins. Always consult local dealers for final quotes.
+          Disclaimer: Prices vary by location, inventory and dealer margins.
+          Always consult local dealers for final quotes.
         </p>
       </footer>
     </div>

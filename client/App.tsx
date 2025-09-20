@@ -24,8 +24,12 @@ const Header = () => (
         <span>Solar Saarthi</span>
       </Link>
       <nav className="flex items-center gap-4 text-sm font-medium">
-        <Link to="/home" className="hover:underline">Home</Link>
-        <Link to="/saarthi-ai" className="hover:underline">SaarthiAI</Link>
+        <Link to="/home" className="hover:underline">
+          Home
+        </Link>
+        <Link to="/saarthi-ai" className="hover:underline">
+          SaarthiAI
+        </Link>
         <Link to="/" className="hover:underline">
           Eligibility & Subsidy Estimate
         </Link>

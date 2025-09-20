@@ -177,7 +177,11 @@ export function VoiceChat({
           <motion.div
             key={particle.id}
             className="absolute w-1 h-1 bg-primary/20 rounded-full"
-            style={{ left: particle.x, top: particle.y, opacity: particle.opacity }}
+            style={{
+              left: particle.x,
+              top: particle.y,
+              opacity: particle.opacity,
+            }}
             animate={{ scale: [1, 1.5, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -196,7 +200,11 @@ export function VoiceChat({
       </div>
 
       <div className="relative z-10 flex flex-col items-center space-y-8">
-        <motion.div className="relative" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <motion.div
+          className="relative"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           <motion.button
             onClick={handleToggleListening}
             className={cn(
@@ -268,7 +276,11 @@ export function VoiceChat({
                   className="absolute inset-0 rounded-full border-2 border-blue-500/30"
                   initial={{ scale: 1, opacity: 0.6 }}
                   animate={{ scale: 1.5, opacity: 0 }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeOut",
+                  }}
                 />
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-blue-500/20"
@@ -300,7 +312,10 @@ export function VoiceChat({
                       ? "bg-green-500"
                       : "bg-muted",
               )}
-              animate={{ height: `${Math.max(4, height * 0.6)}px`, opacity: isListening || isSpeaking ? 1 : 0.3 }}
+              animate={{
+                height: `${Math.max(4, height * 0.6)}px`,
+                opacity: isListening || isSpeaking ? 1 : 0.3,
+              }}
               transition={{ duration: 0.1, ease: "easeOut" }}
             />
           ))}
@@ -308,20 +323,36 @@ export function VoiceChat({
 
         <div className="text-center space-y-2">
           <motion.p
-            className={cn("text-lg font-medium transition-colors", getStatusColor())}
+            className={cn(
+              "text-lg font-medium transition-colors",
+              getStatusColor(),
+            )}
             animate={{ opacity: [1, 0.7, 1] }}
-            transition={{ duration: 2, repeat: isListening || isProcessing || isSpeaking ? Infinity : 0 }}
+            transition={{
+              duration: 2,
+              repeat: isListening || isProcessing || isSpeaking ? Infinity : 0,
+            }}
           >
             {getStatusText()}
           </motion.p>
 
-          <p className="text-sm text-muted-foreground font-mono">{formatTime(duration)}</p>
+          <p className="text-sm text-muted-foreground font-mono">
+            {formatTime(duration)}
+          </p>
 
           {volume > 0 && (
-            <motion.div className="flex items-center justify-center space-x-2" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+            <motion.div
+              className="flex items-center justify-center space-x-2"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
               <VolumeX className="w-4 h-4 text-muted-foreground" />
               <div className="w-24 h-2 bg-muted rounded-full overflow-hidden">
-                <motion.div className="h-full bg-blue-500 rounded-full" animate={{ width: `${volume}%` }} transition={{ duration: 0.1 }} />
+                <motion.div
+                  className="h-full bg-blue-500 rounded-full"
+                  animate={{ width: `${volume}%` }}
+                  transition={{ duration: 0.1 }}
+                />
               </div>
               <Volume2 className="w-4 h-4 text-muted-foreground" />
             </motion.div>
@@ -345,7 +376,9 @@ export default function VoiceChatDemo() {
   return (
     <VoiceChat
       onStart={() => console.log("Voice recording started")}
-      onStop={(duration) => console.log(`Voice recording stopped after ${duration}s`)}
+      onStop={(duration) =>
+        console.log(`Voice recording stopped after ${duration}s`)
+      }
       onVolumeChange={(volume) => console.log(`Volume: ${volume}%`)}
       demoMode={true}
     />
