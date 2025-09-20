@@ -13,6 +13,7 @@ import EnergyTrade from "./pages/EnergyTrade";
 import Maintenance from "./pages/Maintenance";
 import Home from "./pages/Home";
 import SaarthiAi from "./pages/SaarthiAi";
+import Insurance from "./pages/Insurance";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,9 @@ const Header = () => (
         <Link to="/dashboard" className="hover:underline">
           Vendor
         </Link>
+        <Link to="/insurance" className="hover:underline">
+          Insurance
+        </Link>
       </nav>
     </div>
   </header>
@@ -69,6 +73,7 @@ const App = () => (
             <Route path="/home" element={<Home />} />
             <Route path="/saarthi-ai" element={<SaarthiAi />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/insurance" element={<Insurance />} />
             <Route path="/energy-trade" element={<EnergyTrade />} />
             <Route path="/maintenance" element={<Maintenance />} />
             <Route path="/maintaince" element={<Maintenance />} />
