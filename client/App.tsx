@@ -36,7 +36,7 @@ const Header = () => (
           Maintenance
         </Link>
         <Link to="/dashboard" className="hover:underline">
-          Dashboard
+          Vendor
         </Link>
       </nav>
     </div>
