@@ -8,7 +8,9 @@ export default function SaarthiAi() {
         <VoiceChatDemo />
 
         <section className="max-w-3xl mx-auto mt-12">
-          <PromptInputBox onSend={(message, files) => console.log(message, files)} />
+          <PromptInputBox
+            onSend={(message, files) => console.log(message, files)}
+          />
         </section>
       </div>
     </div>
