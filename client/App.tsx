@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import EnergyTrade from "./pages/EnergyTrade";
 import Maintenance from "./pages/Maintenance";
 import Home from "./pages/Home";
+import SaarthiAi from "./pages/SaarthiAi";
 
 const queryClient = new QueryClient();
 
@@ -23,9 +24,8 @@ const Header = () => (
         <span>Solar Saarthi</span>
       </Link>
       <nav className="flex items-center gap-4 text-sm font-medium">
-        <Link to="/home" className="hover:underline">
-          Home
-        </Link>
+        <Link to="/home" className="hover:underline">Home</Link>
+        <Link to="/saarthi-ai" className="hover:underline">SaarthiAI</Link>
         <Link to="/" className="hover:underline">
           Eligibility & Subsidy Estimate
         </Link>
@@ -63,6 +63,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/saarthi-ai" element={<SaarthiAi />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/energy-trade" element={<EnergyTrade />} />
             <Route path="/maintenance" element={<Maintenance />} />
