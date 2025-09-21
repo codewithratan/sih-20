@@ -269,9 +269,7 @@ export default function EnergyTrade() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Button onClick={createListing}>
-                Create Listing
-              </Button>
+              <Button onClick={createListing}>Create Listing</Button>
               <span className="text-xs text-muted-foreground">
                 AI uses simple supply/demand heuristic for MVP.
               </span>

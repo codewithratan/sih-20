@@ -1,9 +1,18 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 import { Mail, Lock, Eye, EyeClosed, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-function Input({ className, type, ...props }: React.ComponentProps<"input"> & { type?: string }) {
+function Input({
+  className,
+  type,
+  ...props
+}: React.ComponentProps<"input"> & { type?: string }) {
   return (
     <input
       type={type}
@@ -12,7 +21,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input"> & { 
         "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
         "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-        className
+        className,
       )}
       {...props}
     />
@@ -24,7 +33,9 @@ export function Component() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [focusedInput, setFocusedInput] = useState<"email" | "password" | null>(null);
+  const [focusedInput, setFocusedInput] = useState<"email" | "password" | null>(
+    null,
+  );
   const [rememberMe, setRememberMe] = useState(false);
 
   const mouseX = useMotionValue(0);
@@ -63,7 +74,12 @@ export function Component() {
       <motion.div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90vh] h-[90vh] rounded-t-full bg-purple-400/20 blur-[60px]"
         animate={{ opacity: [0.3, 0.5, 0.3], scale: [1, 1.1, 1] }}
-        transition={{ duration: 6, repeat: Infinity, repeatType: "mirror", delay: 1 }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          repeatType: "mirror",
+          delay: 1,
+        }}
       />
 
       <div className="absolute left-1/4 top-1/4 w-96 h-96 bg-white/5 rounded-full blur-[100px] animate-pulse opacity-40" />
@@ -94,54 +110,171 @@ export function Component() {
                 ],
                 opacity: [0.2, 0.4, 0.2],
               }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                repeatType: "mirror",
+              }}
             />
 
             <div className="absolute -inset-[1px] rounded-2xl overflow-hidden">
               <motion.div
                 className="absolute top-0 left-0 h-[3px] w-[50%] bg-gradient-to-r from-transparent via-white to-transparent opacity-70"
                 initial={{ filter: "blur(2px)" }}
-                animate={{ left: ["-50%", "100%"], opacity: [0.3, 0.7, 0.3], filter: ["blur(1px)", "blur(2.5px)", "blur(1px)"] }}
+                animate={{
+                  left: ["-50%", "100%"],
+                  opacity: [0.3, 0.7, 0.3],
+                  filter: ["blur(1px)", "blur(2.5px)", "blur(1px)"],
+                }}
                 transition={{
-                  left: { duration: 2.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 1 },
-                  opacity: { duration: 1.2, repeat: Infinity, repeatType: "mirror" },
-                  filter: { duration: 1.5, repeat: Infinity, repeatType: "mirror" },
+                  left: {
+                    duration: 2.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                  },
+                  opacity: {
+                    duration: 1.2,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                  },
+                  filter: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                  },
                 }}
               />
               <motion.div
                 className="absolute top-0 right-0 h-[50%] w-[3px] bg-gradient-to-b from-transparent via-white to-transparent opacity-70"
                 initial={{ filter: "blur(2px)" }}
-                animate={{ top: ["-50%", "100%"], opacity: [0.3, 0.7, 0.3], filter: ["blur(1px)", "blur(2.5px)", "blur(1px)"] }}
+                animate={{
+                  top: ["-50%", "100%"],
+                  opacity: [0.3, 0.7, 0.3],
+                  filter: ["blur(1px)", "blur(2.5px)", "blur(1px)"],
+                }}
                 transition={{
-                  top: { duration: 2.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 1, delay: 0.6 },
-                  opacity: { duration: 1.2, repeat: Infinity, repeatType: "mirror", delay: 0.6 },
-                  filter: { duration: 1.5, repeat: Infinity, repeatType: "mirror", delay: 0.6 },
+                  top: {
+                    duration: 2.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                    delay: 0.6,
+                  },
+                  opacity: {
+                    duration: 1.2,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    delay: 0.6,
+                  },
+                  filter: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    delay: 0.6,
+                  },
                 }}
               />
               <motion.div
                 className="absolute bottom-0 right-0 h-[3px] w-[50%] bg-gradient-to-r from-transparent via-white to-transparent opacity-70"
                 initial={{ filter: "blur(2px)" }}
-                animate={{ right: ["-50%", "100%"], opacity: [0.3, 0.7, 0.3], filter: ["blur(1px)", "blur(2.5px)", "blur(1px)"] }}
+                animate={{
+                  right: ["-50%", "100%"],
+                  opacity: [0.3, 0.7, 0.3],
+                  filter: ["blur(1px)", "blur(2.5px)", "blur(1px)"],
+                }}
                 transition={{
-                  right: { duration: 2.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 1, delay: 1.2 },
-                  opacity: { duration: 1.2, repeat: Infinity, repeatType: "mirror", delay: 1.2 },
-                  filter: { duration: 1.5, repeat: Infinity, repeatType: "mirror", delay: 1.2 },
+                  right: {
+                    duration: 2.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                    delay: 1.2,
+                  },
+                  opacity: {
+                    duration: 1.2,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    delay: 1.2,
+                  },
+                  filter: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    delay: 1.2,
+                  },
                 }}
               />
               <motion.div
                 className="absolute bottom-0 left-0 h-[50%] w-[3px] bg-gradient-to-b from-transparent via-white to-transparent opacity-70"
                 initial={{ filter: "blur(2px)" }}
-                animate={{ bottom: ["-50%", "100%"], opacity: [0.3, 0.7, 0.3], filter: ["blur(1px)", "blur(2.5px)", "blur(1px)"] }}
+                animate={{
+                  bottom: ["-50%", "100%"],
+                  opacity: [0.3, 0.7, 0.3],
+                  filter: ["blur(1px)", "blur(2.5px)", "blur(1px)"],
+                }}
                 transition={{
-                  bottom: { duration: 2.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 1, delay: 1.8 },
-                  opacity: { duration: 1.2, repeat: Infinity, repeatType: "mirror", delay: 1.8 },
-                  filter: { duration: 1.5, repeat: Infinity, repeatType: "mirror", delay: 1.8 },
+                  bottom: {
+                    duration: 2.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                    delay: 1.8,
+                  },
+                  opacity: {
+                    duration: 1.2,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    delay: 1.8,
+                  },
+                  filter: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    delay: 1.8,
+                  },
                 }}
               />
-              <motion.div className="absolute top-0 left-0 h-[5px] w-[5px] rounded-full bg-white/40 blur-[1px]" animate={{ opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }} />
-              <motion.div className="absolute top-0 right-0 h-[8px] w-[8px] rounded-full bg-white/60 blur-[2px]" animate={{ opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 2.4, repeat: Infinity, repeatType: "mirror", delay: 0.5 }} />
-              <motion.div className="absolute bottom-0 right-0 h-[8px] w-[8px] rounded-full bg-white/60 blur-[2px]" animate={{ opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 2.2, repeat: Infinity, repeatType: "mirror", delay: 1 }} />
-              <motion.div className="absolute bottom-0 left-0 h-[5px] w-[5px] rounded-full bg-white/40 blur-[1px]" animate={{ opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 2.3, repeat: Infinity, repeatType: "mirror", delay: 1.5 }} />
+              <motion.div
+                className="absolute top-0 left-0 h-[5px] w-[5px] rounded-full bg-white/40 blur-[1px]"
+                animate={{ opacity: [0.2, 0.4, 0.2] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                }}
+              />
+              <motion.div
+                className="absolute top-0 right-0 h-[8px] w-[8px] rounded-full bg-white/60 blur-[2px]"
+                animate={{ opacity: [0.2, 0.4, 0.2] }}
+                transition={{
+                  duration: 2.4,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  delay: 0.5,
+                }}
+              />
+              <motion.div
+                className="absolute bottom-0 right-0 h-[8px] w-[8px] rounded-full bg-white/60 blur-[2px]"
+                animate={{ opacity: [0.2, 0.4, 0.2] }}
+                transition={{
+                  duration: 2.2,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  delay: 1,
+                }}
+              />
+              <motion.div
+                className="absolute bottom-0 left-0 h-[5px] w-[5px] rounded-full bg-white/40 blur-[1px]"
+                animate={{ opacity: [0.2, 0.4, 0.2] }}
+                transition={{
+                  duration: 2.3,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  delay: 1.5,
+                }}
+              />
             </div>
 
             <div className="absolute -inset-[0.5px] rounded-2xl bg-gradient-to-r from-white/3 via-white/7 to-white/3 opacity-0 group-hover:opacity-70 transition-opacity duration-500" />
@@ -150,7 +283,8 @@ export function Component() {
               <div
                 className="absolute inset-0 opacity-[0.03]"
                 style={{
-                  backgroundImage: "linear-gradient(135deg, white 0.5px, transparent 0.5px), linear-gradient(45deg, white 0.5px, transparent 0.5px)",
+                  backgroundImage:
+                    "linear-gradient(135deg, white 0.5px, transparent 0.5px), linear-gradient(45deg, white 0.5px, transparent 0.5px)",
                   backgroundSize: "30px 30px",
                 }}
               />
@@ -162,14 +296,26 @@ export function Component() {
                   transition={{ type: "spring", duration: 0.8 }}
                   className="mx-auto w-10 h-10 rounded-full border border-white/10 flex items-center justify-center relative overflow-hidden"
                 >
-                  <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">S</span>
+                  <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
+                    S
+                  </span>
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50" />
                 </motion.div>
 
-                <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
+                <motion.h1
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80"
+                >
                   Welcome Back
                 </motion.h1>
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-white/60 text-xs">
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-white/60 text-xs"
+                >
                   Sign in to continue to Solar Saarthi
                 </motion.p>
               </div>
@@ -183,9 +329,14 @@ export function Component() {
                 className="space-y-4"
               >
                 <motion.div className="space-y-3">
-                  <motion.div className={`relative ${focusedInput === "email" ? "z-10" : ""}`} whileHover={{ scale: 1.01 }}>
+                  <motion.div
+                    className={`relative ${focusedInput === "email" ? "z-10" : ""}`}
+                    whileHover={{ scale: 1.01 }}
+                  >
                     <div className="relative flex items-center overflow-hidden rounded-lg">
-                      <Mail className={`absolute left-3 w-4 h-4 transition-all duration-300 ${focusedInput === "email" ? "text-white" : "text-white/40"}`} />
+                      <Mail
+                        className={`absolute left-3 w-4 h-4 transition-all duration-300 ${focusedInput === "email" ? "text-white" : "text-white/40"}`}
+                      />
                       <Input
                         type="email"
                         placeholder="Email address"
@@ -198,9 +349,14 @@ export function Component() {
                     </div>
                   </motion.div>
 
-                  <motion.div className={`relative ${focusedInput === "password" ? "z-10" : ""}`} whileHover={{ scale: 1.01 }}>
+                  <motion.div
+                    className={`relative ${focusedInput === "password" ? "z-10" : ""}`}
+                    whileHover={{ scale: 1.01 }}
+                  >
                     <div className="relative flex items-center overflow-hidden rounded-lg">
-                      <Lock className={`absolute left-3 w-4 h-4 transition-all duration-300 ${focusedInput === "password" ? "text-white" : "text-white/40"}`} />
+                      <Lock
+                        className={`absolute left-3 w-4 h-4 transition-all duration-300 ${focusedInput === "password" ? "text-white" : "text-white/40"}`}
+                      />
                       <Input
                         type={showPassword ? "text" : "password"}
                         placeholder="Password"
@@ -210,7 +366,11 @@ export function Component() {
                         onBlur={() => setFocusedInput(null)}
                         className="w-full bg-white/5 border-transparent focus:border-white/20 text-white placeholder:text-white/30 h-10 transition-all duration-300 pl-10 pr-10 focus:bg-white/10"
                       />
-                      <button type="button" onClick={() => setShowPassword((v) => !v)} className="absolute right-3 cursor-pointer">
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword((v) => !v)}
+                        className="absolute right-3 cursor-pointer"
+                      >
                         {showPassword ? (
                           <Eye className="w-4 h-4 text-white/40 hover:text-white transition-colors duration-300" />
                         ) : (
@@ -233,29 +393,66 @@ export function Component() {
                         className="appearance-none h-4 w-4 rounded border border-white/20 bg-white/5 checked:bg-white checked:border-white focus:outline-none focus:ring-1 focus:ring-white/30 transition-all duration-200"
                       />
                     </div>
-                    <label htmlFor="remember-me" className="text-xs text-white/60 hover:text-white/80 transition-colors duration-200">
+                    <label
+                      htmlFor="remember-me"
+                      className="text-xs text-white/60 hover:text-white/80 transition-colors duration-200"
+                    >
                       Remember me
                     </label>
                   </div>
 
                   <div className="text-xs">
-                    <a href="/forgot-password" className="text-white/60 hover:text-white transition-colors duration-200">
+                    <a
+                      href="/forgot-password"
+                      className="text-white/60 hover:text-white transition-colors duration-200"
+                    >
                       Forgot password?
                     </a>
                   </div>
                 </div>
 
-                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isLoading} className="w-full relative group mt-5">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full relative group mt-5"
+                >
                   <div className="absolute inset-0 bg-white/10 rounded-lg blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
                   <div className="relative overflow-hidden bg-white text-black font-medium h-10 rounded-lg transition-all duration-300 flex items-center justify-center">
-                    <motion.div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 -z-10" animate={{ x: ["-100%", "100%"] }} transition={{ duration: 1.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 1 }} style={{ opacity: isLoading ? 1 : 0, transition: "opacity 0.3s ease" }} />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 -z-10"
+                      animate={{ x: ["-100%", "100%"] }}
+                      transition={{
+                        duration: 1.5,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                        repeatDelay: 1,
+                      }}
+                      style={{
+                        opacity: isLoading ? 1 : 0,
+                        transition: "opacity 0.3s ease",
+                      }}
+                    />
                     <AnimatePresence mode="wait">
                       {isLoading ? (
-                        <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center">
+                        <motion.div
+                          key="loading"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center justify-center"
+                        >
                           <div className="w-4 h-4 border-2 border-black/70 border-t-transparent rounded-full animate-spin" />
                         </motion.div>
                       ) : (
-                        <motion.span key="button-text" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-1 text-sm font-medium">
+                        <motion.span
+                          key="button-text"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center justify-center gap-1 text-sm font-medium"
+                        >
                           Sign In
                           <ArrowRight className="w-3 h-3" />
                         </motion.span>
@@ -266,23 +463,57 @@ export function Component() {
 
                 <div className="relative mt-2 mb-5 flex items-center">
                   <div className="flex-grow border-t border-white/5" />
-                  <motion.span className="mx-3 text-xs text-white/40" initial={{ opacity: 0.7 }} animate={{ opacity: [0.7, 0.9, 0.7] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
+                  <motion.span
+                    className="mx-3 text-xs text-white/40"
+                    initial={{ opacity: 0.7 }}
+                    animate={{ opacity: [0.7, 0.9, 0.7] }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
                     or
                   </motion.span>
                   <div className="flex-grow border-t border-white/5" />
                 </div>
 
-                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="button" className="w-full relative group">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="button"
+                  className="w-full relative group"
+                >
                   <div className="absolute inset-0 bg-white/5 rounded-lg blur opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
                   <div className="relative overflow-hidden bg-white/5 text-white font-medium h-10 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-2">
-                    <div className="w-4 h-4 flex items-center justify-center text-white/80">G</div>
-                    <span className="text-white/80 text-xs">Sign in with Google</span>
-                    <motion.div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0" initial={{ x: "-100%" }} whileHover={{ x: "100%" }} transition={{ duration: 1, ease: "easeInOut" }} />
+                    <div className="w-4 h-4 flex items-center justify-center text-white/80">
+                      G
+                    </div>
+                    <span className="text-white/80 text-xs">
+                      Sign in with Google
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 1, ease: "easeInOut" }}
+                    />
                   </div>
                 </motion.button>
 
-                <motion.p className="text-center text-xs text-white/60 mt-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-                  Don't have an account? <a href="/signup" className="relative inline-block"><span className="relative z-10 text-white font-medium">Sign up</span><span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white group-hover:w-full transition-all duration-300" /></a>
+                <motion.p
+                  className="text-center text-xs text-white/60 mt-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  Don't have an account?{" "}
+                  <a href="/signup" className="relative inline-block">
+                    <span className="relative z-10 text-white font-medium">
+                      Sign up
+                    </span>
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white group-hover:w-full transition-all duration-300" />
+                  </a>
                 </motion.p>
               </form>
             </div>

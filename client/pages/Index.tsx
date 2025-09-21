@@ -58,11 +58,7 @@ export default function Index() {
 
   const canSubmit = useMemo(() => {
     const landSize = Number(land);
-    return (
-      name.trim().length >= 2 &&
-      !Number.isNaN(landSize) &&
-      landSize > 0
-    );
+    return name.trim().length >= 2 && !Number.isNaN(landSize) && landSize > 0;
   }, [name, land]);
 
   const useGPS = () => {
