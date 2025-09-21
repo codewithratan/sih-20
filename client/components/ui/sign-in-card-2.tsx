@@ -170,7 +170,7 @@ export function Component() {
                   Welcome Back
                 </motion.h1>
                 <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-white/60 text-xs">
-                  Sign in to continue to StyleMe
+                  Sign in to continue to Solar Saarthi
                 </motion.p>
               </div>
 
