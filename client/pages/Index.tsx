@@ -61,13 +61,9 @@ export default function Index() {
     return (
       name.trim().length >= 2 &&
       !Number.isNaN(landSize) &&
-      landSize > 0 &&
-      !!state &&
-      !!pumpType &&
-      !!pumpHP &&
-      !!irrigation
+      landSize > 0
     );
-  }, [name, land, state, pumpType, pumpHP, irrigation]);
+  }, [name, land]);
 
   const useGPS = () => {
     if (!navigator.geolocation) return;
