@@ -72,14 +72,31 @@ export default function EnergyTrade() {
   };
 
   const createListing = () => {
-    if (!registered || registered.role !== "farmer") return;
+    let user = registered;
+    if (!user) {
+      // Auto-register as farmer if valid details provided
+      if (name.trim().length >= 2 && /^\d{10}$/.test(phone)) {
+        user = { role: "farmer", name, phone };
+        setRegistered(user);
+      } else {
+        alert("Please enter a valid name and 10-digit phone, then try again.");
+        return;
+      }
+    }
+    if (user.role !== "farmer") {
+      alert("Switch role to Farmer to create a listing.");
+      return;
+    }
     const k = Number(listKWh);
     const p = Number(basePrice);
-    if (!k || !p) return;
+    if (!k || !p) {
+      alert("Enter valid kWh and base price.");
+      return;
+    }
     const id = listings.length + 1;
     setListings((prev) => [
       ...prev,
-      { id, farmer: registered.name, kWh: k, basePrice: p, aiPrice },
+      { id, farmer: user!.name, kWh: k, basePrice: p, aiPrice },
     ]);
   };
 
@@ -252,10 +269,7 @@ export default function EnergyTrade() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Button
-                onClick={createListing}
-                disabled={!registered || registered.role !== "farmer"}
-              >
+              <Button onClick={createListing}>
                 Create Listing
               </Button>
               <span className="text-xs text-muted-foreground">

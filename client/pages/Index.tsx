@@ -60,7 +60,6 @@ export default function Index() {
     const landSize = Number(land);
     return (
       name.trim().length >= 2 &&
-      otpVerified &&
       !Number.isNaN(landSize) &&
       landSize > 0 &&
       !!state &&
@@ -68,7 +67,7 @@ export default function Index() {
       !!pumpHP &&
       !!irrigation
     );
-  }, [name, otpVerified, land, state, pumpType, pumpHP, irrigation]);
+  }, [name, land, state, pumpType, pumpHP, irrigation]);
 
   const useGPS = () => {
     if (!navigator.geolocation) return;
