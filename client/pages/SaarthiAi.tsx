@@ -40,11 +40,17 @@ export default function SaarthiAi() {
       });
 
       if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || "Request failed");
+        throw new Error(`${res.status} ${res.statusText || "Request failed"}`);
       }
 
-      const data: { reply: string } = await res.json();
+      let data: { reply: string };
+      const ct = res.headers.get("content-type") || "";
+      if (ct.includes("application/json")) {
+        data = (await res.json()) as { reply: string };
+      } else {
+        const text = await res.text();
+        data = { reply: text };
+      }
       const assistantMsg: ChatMessage = {
         role: "assistant",
         content: data.reply,
