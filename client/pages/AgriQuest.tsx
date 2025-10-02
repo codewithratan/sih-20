@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import Missions from "@/components/agriquest/Missions";
 
 interface RecommendationInput {
   state: string;
