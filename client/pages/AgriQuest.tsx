@@ -305,6 +305,8 @@ export default function AgriQuest() {
             ))}
           </div>
         </section>
+
+        <Missions />
       </div>
     </div>
   );
