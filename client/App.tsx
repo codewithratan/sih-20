@@ -14,6 +14,7 @@ import Maintenance from "./pages/Maintenance";
 import Home from "./pages/Home";
 import SaarthiAi from "./pages/SaarthiAi";
 import Insurance from "./pages/Insurance";
+import AgriQuest from "./pages/AgriQuest";
 import SignIn from "./pages/SignIn";
 
 const queryClient = new QueryClient();
@@ -47,6 +48,9 @@ const Header = () => (
         <Link to="/insurance" className="hover:underline">
           Insurance
         </Link>
+        <Link to="/agriquest" className="hover:underline">
+          AgriQuest
+        </Link>
         <Link to="/sign-in" className="hover:underline">
           Sign In
         </Link>
@@ -78,6 +82,7 @@ const App = () => (
             <Route path="/saarthi-ai" element={<SaarthiAi />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/insurance" element={<Insurance />} />
+            <Route path="/agriquest" element={<AgriQuest />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/energy-trade" element={<EnergyTrade />} />
             <Route path="/maintenance" element={<Maintenance />} />
