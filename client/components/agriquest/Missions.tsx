@@ -63,7 +63,11 @@ const defaultQuests: Quest[] = [
     description: "Pick the best timing for neem-based sprays.",
     quiz: {
       question: "Best time to apply neem oil to manage sucking pests?",
-      options: ["Midday, bright sun", "Early morning or late evening", "During heavy rain"],
+      options: [
+        "Midday, bright sun",
+        "Early morning or late evening",
+        "During heavy rain",
+      ],
       correctIndex: 1,
     },
   },
@@ -87,7 +91,11 @@ const defaultQuests: Quest[] = [
     description: "Simple inputs and schedule.",
     quiz: {
       question: "Jeevamruth is mainly used to:",
-      options: ["Increase soil microbes", "Kill weeds", "Lower soil pH drastically"],
+      options: [
+        "Increase soil microbes",
+        "Kill weeds",
+        "Lower soil pH drastically",
+      ],
       correctIndex: 0,
     },
   },
@@ -148,7 +156,11 @@ const defaultQuests: Quest[] = [
     description: "Benefits of mixing crops.",
     quiz: {
       question: "One advantage of mixed cropping is:",
-      options: ["Higher uniform pest spread", "Pest break and resource complementarity", "More fertilizer need"],
+      options: [
+        "Higher uniform pest spread",
+        "Pest break and resource complementarity",
+        "More fertilizer need",
+      ],
       correctIndex: 1,
     },
   },
@@ -160,7 +172,11 @@ const defaultQuests: Quest[] = [
     description: "Identify a trap crop use.",
     quiz: {
       question: "Trap crops are used mainly to:",
-      options: ["Attract and divert pests", "Increase soil salinity", "Shade main crop excessively"],
+      options: [
+        "Attract and divert pests",
+        "Increase soil salinity",
+        "Shade main crop excessively",
+      ],
       correctIndex: 0,
     },
   },
@@ -197,7 +213,11 @@ const defaultQuests: Quest[] = [
     description: "Benefits of cover.",
     quiz: {
       question: "Cover crops primarily help to:",
-      options: ["Erode soil more", "Improve structure and reduce weeds", "Increase evaporation"],
+      options: [
+        "Erode soil more",
+        "Improve structure and reduce weeds",
+        "Increase evaporation",
+      ],
       correctIndex: 1,
     },
   },
@@ -209,7 +229,11 @@ const defaultQuests: Quest[] = [
     description: "Residue management.",
     quiz: {
       question: "Leaving crop residues on soil surface:",
-      options: ["Worsens moisture retention", "Improves moisture and biology", "Always spreads disease"],
+      options: [
+        "Worsens moisture retention",
+        "Improves moisture and biology",
+        "Always spreads disease",
+      ],
       correctIndex: 1,
     },
   },
@@ -222,7 +246,11 @@ const defaultQuests: Quest[] = [
     description: "Learn safe dilution.",
     quiz: {
       question: "Before spraying botanical extracts you should:",
-      options: ["Skip filtering", "Do a patch test and filter mix", "Spray at noon"],
+      options: [
+        "Skip filtering",
+        "Do a patch test and filter mix",
+        "Spray at noon",
+      ],
       correctIndex: 1,
     },
   },
@@ -234,7 +262,11 @@ const defaultQuests: Quest[] = [
     description: "Row spacing check.",
     quiz: {
       question: "Mixed stands often need spacing adjustments to:",
-      options: ["Reduce competition and optimize light", "Increase lodging", "Trap humidity"],
+      options: [
+        "Reduce competition and optimize light",
+        "Increase lodging",
+        "Trap humidity",
+      ],
       correctIndex: 0,
     },
   },
@@ -258,14 +290,21 @@ const defaultQuests: Quest[] = [
     description: "Rinse and clean.",
     quiz: {
       question: "After spraying, sprayers should be:",
-      options: ["Stored without rinsing", "Rinsed and flushed with clean water", "Left with residue"],
+      options: [
+        "Stored without rinsing",
+        "Rinsed and flushed with clean water",
+        "Left with residue",
+      ],
       correctIndex: 1,
     },
   },
 ];
 
 function useProgress() {
-  const [progress, setProgress] = useState<StoredProgress>({ completed: [], answers: {} });
+  const [progress, setProgress] = useState<StoredProgress>({
+    completed: [],
+    answers: {},
+  });
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -276,7 +315,10 @@ function useProgress() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   }, [progress]);
   const markDone = (id: string) =>
-    setProgress((p) => ({ ...p, completed: Array.from(new Set([...p.completed, id])) }));
+    setProgress((p) => ({
+      ...p,
+      completed: Array.from(new Set([...p.completed, id])),
+    }));
   const saveAnswer = (id: string, idx: number) =>
     setProgress((p) => ({ ...p, answers: { ...p.answers, [id]: idx } }));
   const reset = () => setProgress({ completed: [], answers: {} });
@@ -288,7 +330,10 @@ function ProgressFarm({ pct }: { pct: number }) {
   return (
     <div className="flex items-center gap-3">
       <div className="w-40 h-10 bg-muted rounded-full overflow-hidden">
-        <div className="h-full bg-green-500" style={{ width: `${Math.min(100, pct)}%` }} />
+        <div
+          className="h-full bg-green-500"
+          style={{ width: `${Math.min(100, pct)}%` }}
+        />
       </div>
       <div className="flex items-center gap-1 text-2xl">
         {Array.from({ length: level }).map((_, i) => (
@@ -300,7 +345,15 @@ function ProgressFarm({ pct }: { pct: number }) {
   );
 }
 
-function QuizCard({ q, onAnswered, selected }: { q: Quest; onAnswered: (ok: boolean, idx: number) => void; selected?: number }) {
+function QuizCard({
+  q,
+  onAnswered,
+  selected,
+}: {
+  q: Quest;
+  onAnswered: (ok: boolean, idx: number) => void;
+  selected?: number;
+}) {
   if (!q.quiz) return null;
   return (
     <div className="rounded-lg border p-3">
@@ -313,7 +366,11 @@ function QuizCard({ q, onAnswered, selected }: { q: Quest; onAnswered: (ok: bool
               key={idx}
               onClick={() => onAnswered(idx === q.quiz!.correctIndex, idx)}
               className={`rounded-lg border px-3 py-2 text-sm text-left ${
-                isSel ? (idx === q.quiz!.correctIndex ? "bg-green-600 text-white" : "bg-red-600 text-white") : "hover:bg-muted"
+                isSel
+                  ? idx === q.quiz!.correctIndex
+                    ? "bg-green-600 text-white"
+                    : "bg-red-600 text-white"
+                  : "hover:bg-muted"
               }`}
             >
               {opt}
@@ -331,19 +388,27 @@ export default function Missions() {
   const [active, setActive] = useState<string | null>(null);
 
   const quests = defaultQuests;
-  const filtered = quests.filter((q) => (filter === "All" ? true : q.category === filter));
+  const filtered = quests.filter((q) =>
+    filter === "All" ? true : q.category === filter,
+  );
   const completedCount = progress.completed.length;
   const pct = Math.round((completedCount / quests.length) * 100);
 
   const begin = (q: Quest) => setActive(q.id);
-  const current = useMemo(() => quests.find((q) => q.id === active) || null, [active]);
+  const current = useMemo(
+    () => quests.find((q) => q.id === active) || null,
+    [active],
+  );
 
   return (
     <section className="space-y-4">
       <div className="flex items-center justify-between gap-2">
         <div>
           <h2 className="text-xl font-semibold">Missions</h2>
-          <p className="text-sm text-muted-foreground">Help Farmer Raj save the village — complete daily quests to upgrade your virtual farm.</p>
+          <p className="text-sm text-muted-foreground">
+            Help Farmer Raj save the village — complete daily quests to upgrade
+            your virtual farm.
+          </p>
         </div>
         <ProgressFarm pct={pct} />
       </div>
@@ -358,7 +423,12 @@ export default function Missions() {
             {c}
           </button>
         ))}
-        <button onClick={reset} className="ml-auto text-xs text-muted-foreground underline">Reset Progress</button>
+        <button
+          onClick={reset}
+          className="ml-auto text-xs text-muted-foreground underline"
+        >
+          Reset Progress
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -366,13 +436,18 @@ export default function Missions() {
           const done = progress.completed.includes(q.id);
           const sel = progress.answers[q.id];
           return (
-            <div key={q.id} className={`rounded-xl border p-4 bg-background/50 ${done ? "opacity-80" : ""}`}>
+            <div
+              key={q.id}
+              className={`rounded-xl border p-4 bg-background/50 ${done ? "opacity-80" : ""}`}
+            >
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <h3 className="font-medium">{q.title}</h3>
                   <p className="text-xs text-muted-foreground">{q.category}</p>
                 </div>
-                <span className={`text-xs px-2 py-0.5 rounded-full border ${done ? "bg-green-600 text-white border-green-600" : "bg-amber-100 text-amber-900 border-amber-200"}`}>
+                <span
+                  className={`text-xs px-2 py-0.5 rounded-full border ${done ? "bg-green-600 text-white border-green-600" : "bg-amber-100 text-amber-900 border-amber-200"}`}
+                >
                   {done ? "Completed" : "Pending"}
                 </span>
               </div>
@@ -405,11 +480,21 @@ export default function Missions() {
                         <MulchMission onComplete={() => markDone(q.id)} />
                       )}
                       <div className="text-right">
-                        <button className="text-xs underline" onClick={() => setActive(null)}>Close</button>
+                        <button
+                          className="text-xs underline"
+                          onClick={() => setActive(null)}
+                        >
+                          Close
+                        </button>
                       </div>
                     </div>
                   ) : (
-                    <button onClick={() => begin(q)} className="rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm">Start</button>
+                    <button
+                      onClick={() => begin(q)}
+                      className="rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm"
+                    >
+                      Start
+                    </button>
                   )}
                 </div>
               )}

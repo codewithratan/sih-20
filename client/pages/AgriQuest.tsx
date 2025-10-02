@@ -45,7 +45,8 @@ const RECS: Record<string, Record<string, Recommendation>> = {
   Kerala: {
     Paddy: {
       sowingWindow: "Kharif: May–June, Rabi: Sep–Oct, Summer: Jan–Feb",
-      irrigation: "Maintain 5 cm water after transplanting; drain before harvest.",
+      irrigation:
+        "Maintain 5 cm water after transplanting; drain before harvest.",
       fertilizer:
         "Basal: 40:20:20 NPK kg/ha; Topdress: 20 kg N/ha at tillering and panicle initiation.",
       notes: [
@@ -55,7 +56,8 @@ const RECS: Record<string, Record<string, Recommendation>> = {
     },
     Banana: {
       sowingWindow: "Planting: Aug–Sep or Feb–Mar",
-      irrigation: "Drip at 4–8 L/plant/day increasing with canopy; mulch to retain moisture.",
+      irrigation:
+        "Drip at 4–8 L/plant/day increasing with canopy; mulch to retain moisture.",
       fertilizer:
         "200:60:200 g NPK/plant/year split monthly; add 10–15 kg FYM per pit.",
       notes: [
@@ -67,7 +69,8 @@ const RECS: Record<string, Record<string, Recommendation>> = {
   Maharashtra: {
     Cotton: {
       sowingWindow: "Rainfed: June–July, Irrigated: Apr–May",
-      irrigation: "Irrigate at square and boll development; avoid waterlogging.",
+      irrigation:
+        "Irrigate at square and boll development; avoid waterlogging.",
       fertilizer: "80:40:40 NPK kg/ha; add 25 kg ZnSO4/ha once in 2–3 years.",
       notes: [
         "Follow pink bollworm management with synchronized sowing and pheromone traps.",
@@ -75,7 +78,8 @@ const RECS: Record<string, Record<string, Recommendation>> = {
     },
     Soybean: {
       sowingWindow: "Mid-June to early July with onset of monsoon",
-      irrigation: "Mostly rainfed; provide lifesaving irrigation at pod fill if dry spell.",
+      irrigation:
+        "Mostly rainfed; provide lifesaving irrigation at pod fill if dry spell.",
       fertilizer: "30:60:30 NPK kg/ha; seed treat with Rhizobium and PSB.",
       notes: ["Avoid waterlogging; choose 90–110 day varieties."],
     } as any,
@@ -85,7 +89,8 @@ const RECS: Record<string, Record<string, Recommendation>> = {
       sowingWindow: "Mid-Oct to mid-Nov",
       irrigation:
         "First irrigation 25–30 DAS; then at flowering and pod formation.",
-      fertilizer: "60:40:40 NPK kg/ha; 20 kg S/ha recommended in S-deficit soils.",
+      fertilizer:
+        "60:40:40 NPK kg/ha; 20 kg S/ha recommended in S-deficit soils.",
       notes: ["Use seed rate 4–5 kg/ha; treat seed with Thiram 3 g/kg."],
     },
     Cumin: {
@@ -122,7 +127,10 @@ const TIPS = [
 
 export default function AgriQuest() {
   const [query, setQuery] = useState("");
-  const [input, setInput] = useState<RecommendationInput>({ state: "Kerala", crop: "Paddy" });
+  const [input, setInput] = useState<RecommendationInput>({
+    state: "Kerala",
+    crop: "Paddy",
+  });
   const [answer, setAnswer] = useState<string>("");
   const reportRef = useRef<HTMLDivElement>(null);
 
@@ -137,11 +145,16 @@ export default function AgriQuest() {
   const handleAsk = () => {
     const normalized = query.trim().toLowerCase();
     if (!normalized) {
-      setAnswer("Please type a specific question about your crop, soil, or irrigation.");
+      setAnswer(
+        "Please type a specific question about your crop, soil, or irrigation.",
+      );
       return;
     }
 
-    const patterns: Array<{ test: (q: string) => boolean; reply: () => string }> = [
+    const patterns: Array<{
+      test: (q: string) => boolean;
+      reply: () => string;
+    }> = [
       {
         test: (q) => /when .*sow|sowing|plant/i.test(q),
         reply: () =>
@@ -180,12 +193,18 @@ export default function AgriQuest() {
 
   const exportPdf = async () => {
     if (!reportRef.current) return;
-    const canvas = await html2canvas(reportRef.current, { scale: 2, backgroundColor: "#ffffff" });
+    const canvas = await html2canvas(reportRef.current, {
+      scale: 2,
+      backgroundColor: "#ffffff",
+    });
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF({ orientation: "p", unit: "pt", format: "a4" });
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
-    const ratio = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+    const ratio = Math.min(
+      pageWidth / canvas.width,
+      pageHeight / canvas.height,
+    );
     const imgWidth = canvas.width * ratio;
     const imgHeight = canvas.height * ratio;
     const x = (pageWidth - imgWidth) / 2;
@@ -199,8 +218,13 @@ export default function AgriQuest() {
       <div className="max-w-5xl mx-auto space-y-8">
         <header className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">AgriQuest</h1>
-            <p className="text-muted-foreground">Decision help for crops, water, and nutrients — tailored to your state.</p>
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              AgriQuest
+            </h1>
+            <p className="text-muted-foreground">
+              Decision help for crops, water, and nutrients — tailored to your
+              state.
+            </p>
           </div>
           <button
             onClick={exportPdf}
@@ -212,7 +236,9 @@ export default function AgriQuest() {
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="md:col-span-2 rounded-xl border p-4 bg-background/50">
-            <label className="block text-sm font-medium mb-1">Ask a question</label>
+            <label className="block text-sm font-medium mb-1">
+              Ask a question
+            </label>
             <div className="flex gap-2">
               <input
                 value={query}
@@ -220,7 +246,10 @@ export default function AgriQuest() {
                 placeholder="e.g., When should I irrigate paddy after transplanting?"
                 className="flex-1 rounded-lg border px-3 py-2 bg-background"
               />
-              <button onClick={handleAsk} className="rounded-lg bg-primary text-primary-foreground px-4">
+              <button
+                onClick={handleAsk}
+                className="rounded-lg bg-primary text-primary-foreground px-4"
+              >
                 Ask
               </button>
             </div>
@@ -235,7 +264,9 @@ export default function AgriQuest() {
             <label className="block text-sm font-medium mb-1">State</label>
             <select
               value={input.state}
-              onChange={(e) => setInput((s) => ({ ...s, state: e.target.value }))}
+              onChange={(e) =>
+                setInput((s) => ({ ...s, state: e.target.value }))
+              }
               className="w-full rounded-lg border px-3 py-2 bg-background"
             >
               {STATES.map((s) => (
@@ -249,7 +280,9 @@ export default function AgriQuest() {
             <input
               list="crop-list"
               value={input.crop}
-              onChange={(e) => setInput((s) => ({ ...s, crop: e.target.value }))}
+              onChange={(e) =>
+                setInput((s) => ({ ...s, crop: e.target.value }))
+              }
               className="w-full rounded-lg border px-3 py-2 bg-background"
             />
             <datalist id="crop-list">
@@ -260,9 +293,14 @@ export default function AgriQuest() {
           </div>
         </section>
 
-        <section ref={reportRef} className="rounded-2xl border p-6 bg-white text-black">
+        <section
+          ref={reportRef}
+          className="rounded-2xl border p-6 bg-white text-black"
+        >
           <h2 className="text-xl font-semibold">Recommendation Sheet</h2>
-          <p className="text-sm text-gray-600">State: {input.state} • Crop: {input.crop}</p>
+          <p className="text-sm text-gray-600">
+            State: {input.state} • Crop: {input.crop}
+          </p>
 
           {rec ? (
             <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -290,8 +328,9 @@ export default function AgriQuest() {
           ) : (
             <div className="mt-4 rounded-lg border p-4">
               <p className="text-sm">
-                No curated sheet for this combination yet. Use the Ask box above for general guidance,
-                and consult your local agriculture officer for a soil-test based plan.
+                No curated sheet for this combination yet. Use the Ask box above
+                for general guidance, and consult your local agriculture officer
+                for a soil-test based plan.
               </p>
             </div>
           )}

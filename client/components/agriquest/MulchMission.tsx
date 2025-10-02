@@ -6,7 +6,11 @@ interface Log {
   lon?: number;
 }
 
-export default function MulchMission({ onComplete }: { onComplete: () => void }) {
+export default function MulchMission({
+  onComplete,
+}: {
+  onComplete: () => void;
+}) {
   const [logs, setLogs] = useState<Log[]>(() => {
     try {
       const raw = localStorage.getItem("agriquest_mulch_logs_v1");
@@ -34,7 +38,10 @@ export default function MulchMission({ onComplete }: { onComplete: () => void })
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude, longitude } = pos.coords;
-        setLogs((l) => [...l, { time: Date.now(), lat: latitude, lon: longitude }]);
+        setLogs((l) => [
+          ...l,
+          { time: Date.now(), lat: latitude, lon: longitude },
+        ]);
       },
       (err) => {
         setLocError(err.message || "Location unavailable");
@@ -48,11 +55,26 @@ export default function MulchMission({ onComplete }: { onComplete: () => void })
 
   return (
     <div className="rounded-lg border p-3 space-y-3">
-      <p className="text-sm">Log your mulching sessions. Three GPS-timed check-ins will complete this mission.</p>
+      <p className="text-sm">
+        Log your mulching sessions. Three GPS-timed check-ins will complete this
+        mission.
+      </p>
       <div className="flex items-center gap-2">
-        <button onClick={checkIn} className="rounded bg-primary text-primary-foreground px-3 py-1 text-sm">Check-in now</button>
-        <button onClick={reset} className="rounded border px-3 py-1 text-sm hover:bg-muted">Reset</button>
-        <span className="text-xs text-muted-foreground">Progress: {Math.min(3, logs.length)} / 3</span>
+        <button
+          onClick={checkIn}
+          className="rounded bg-primary text-primary-foreground px-3 py-1 text-sm"
+        >
+          Check-in now
+        </button>
+        <button
+          onClick={reset}
+          className="rounded border px-3 py-1 text-sm hover:bg-muted"
+        >
+          Reset
+        </button>
+        <span className="text-xs text-muted-foreground">
+          Progress: {Math.min(3, logs.length)} / 3
+        </span>
       </div>
       {locError && <div className="text-xs text-red-600">{locError}</div>}
       <ul className="text-sm space-y-1">
@@ -61,13 +83,17 @@ export default function MulchMission({ onComplete }: { onComplete: () => void })
             <span className="mr-2">#{i + 1}</span>
             <span className="mr-2">{new Date(l.time).toLocaleString()}</span>
             {typeof l.lat === "number" && typeof l.lon === "number" && (
-              <span className="text-xs text-muted-foreground">({l.lat.toFixed(5)}, {l.lon.toFixed(5)})</span>
+              <span className="text-xs text-muted-foreground">
+                ({l.lat.toFixed(5)}, {l.lon.toFixed(5)})
+              </span>
             )}
           </li>
         ))}
       </ul>
       {logs.length >= 3 && (
-        <div className="text-xs bg-green-100 text-green-800 rounded p-2">Mission complete — great job protecting soil moisture!</div>
+        <div className="text-xs bg-green-100 text-green-800 rounded p-2">
+          Mission complete — great job protecting soil moisture!
+        </div>
       )}
     </div>
   );
